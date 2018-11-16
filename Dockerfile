@@ -12,7 +12,20 @@ RUN \
 
 WORKDIR /usr/src/app/
 COPY . .
-RUN /usr/src/app/setup.sh
-EXPOSE 7070
 
+RUN gem install wpscan && \
+  wpscan --update
+RUN python3 -m pip install virtualenv && \
+  virtualenv venv -p python3 && \
+  . venv/bin/activate && \
+  pip install --no-cache-dir -r requirements.txt
+RUN git submodule update --init --recursive
+
+WORKDIR /usr/src/app/plugins/vbscan/
+RUN git pull origin master
+
+WORKDIR /usr/src/app/plugins/joomscan/
+RUN git pull origin master
+
+EXPOSE 7070
 CMD ["/usr/src/app/run.sh"]
