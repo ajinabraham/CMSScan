@@ -14,7 +14,7 @@ CMSScan provides a centralized Security Dashboard for CMS Security scans. It is 
 # Requires python3 and git
 git clone https://github.com/ajinabraham/CMSScan.git
 cd CMSScan
-./setup.py
+./setup.sh
 ```
 ## Run
 
