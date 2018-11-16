@@ -1,0 +1,3 @@
+[submodule "plugins/vbscan"]
+	path = plugins/vbscan
+	url = https://github.com/rezasp/vbscan.git
