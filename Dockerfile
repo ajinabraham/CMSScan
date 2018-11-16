@@ -12,7 +12,7 @@ RUN \
 
 WORKDIR /usr/src/app/
 COPY . .
-RUN ./setup.sh
+RUN /usr/src/app/setup.sh
 EXPOSE 7070
 
 CMD ["/usr/src/app/run.sh"]
