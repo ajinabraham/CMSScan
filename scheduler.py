@@ -5,6 +5,7 @@ import time
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
 # SMTP SETTINGS
 SMTP_SERVER = ''
 FROM_EMAIL = ''
@@ -14,8 +15,10 @@ TO_EMAIL = ''
 SERVER = 'http://127.0.0.1:7070'
 
 # SCAN SITES
-WP_SITES = []
-DP_SITES = []
+WORDPRESS_SITES = []
+DRUPAL_SITES = []
+JOOMLA_SITES = []
+VBULLETIN_SITES = []
 
 
 def mail(html):
@@ -45,14 +48,7 @@ def mail(html):
 
 
 def start_scan(url, cms):
-    data = {"url": url, "cms": cms}
-    resp = requests.post("http://127.0.0.1:7070/scan",
-                         data=data, timeout=10)
-    return resp
-
-
-def schedule():
-    # Gets log paths to log to
+     # Gets log paths to log to
     log_dir = os.path.dirname(os.path.realpath(__file__))
     log_file = os.path.join(log_dir, "scheduler.log")
 
@@ -63,18 +59,25 @@ def schedule():
     hdlr.setFormatter(formatter)
     logger.addHandler(hdlr)
     logger.setLevel(logging.INFO)
-    for wpu in WP_SITES:
-        resp = start_scan(wpu, 'wordpress')
-        if resp.status_code == 200:
-            logger.info(resp.json())
-        else:
-            logger.error(f'Scan failed for {wpu}')
-    for dpu in DP_SITES:
-        resp = start_scan(dpu, 'drupal')
-        if resp.status_code == 200:
-            logger.info(resp.json())
-        else:
-            logger.error(f"Scan failed for {dpu}")
+    data = {"url": url, "cms": cms}
+    resp = requests.post("http://127.0.0.1:7070/scan",
+                         data=data, timeout=10)
+    if resp.status_code == 200:
+        logger.info(resp.json())
+    else:
+        logger.error(f'Scan failed for {url} - CMS: {cms}')
+
+
+def schedule():
+    for wpu in WORDPRESS_SITES:
+        start_scan(wpu, 'wordpress')
+    for dpu in DRUPAL_SITES:
+        start_scan(dpu, 'drupal')
+    for vbu in VBULLETIN_SITES:
+        start_scan(vbu, 'vbulletin')
+    for jmu in JOOMLA_SITES:
+        start_scan(jmu, 'joomla')
+
     if SMTP_SERVER:
         mail(
             "<br><br>CMSScan Scan Completed. Access Results here: {SERVER}/scans")

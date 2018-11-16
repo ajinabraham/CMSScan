@@ -15,6 +15,10 @@ def find_cms(url):
         return "wordpress"
     elif "Drupal.settings" in res.text:
         return "drupal"
+    elif "window.vBulletin" in res.text:
+        return "vbulletin"
+    elif "Joomla!" in res.text or "joomla-script-" in res.text:
+        return "joomla"
     return "unknown"
 
 
@@ -50,3 +54,19 @@ def wpscan(url):
                '--force', '--wp-content-dir', url + 'wp-content/',
                '-e', 'vp,vt', '--plugins-detection', 'mixed', '--rua']
     return cmd_runner(wp_scan)
+
+
+def vbscan(url):
+    print(f"[INFO] vbscan scanning URL: {url}")
+    if not url.endswith("/"):
+        url += "/"
+    vb_scan = ['perl', 'plugins/vbscan/vbscan.pl', url]
+    return cmd_runner(vb_scan)
+
+
+def joomscan(url):
+    print(f"[INFO] joomscan scanning URL: {url}")
+    if not url.endswith("/"):
+        url += "/"
+    jm_scan = ['perl', 'plugins/joomscan/joomscan.pl', '--url', url, '-ec']
+    return cmd_runner(jm_scan)

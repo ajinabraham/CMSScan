@@ -76,6 +76,8 @@ def view_result(scan_id):
             "tms": res[0][4],
             "res": res[0][3],
         }
+    if resp["cms"] in ["joomla", "vbulletin"]:
+        return render_template('result_plain.html', result=resp)
     return render_template('result.html', result=resp)
 
 
@@ -93,7 +95,7 @@ def delete_scan():
 def scan():
     url = request.form.get('url')
     cmsg = request.form.get('cms')
-    if cmsg in ['wordpress', 'drupal']:
+    if cmsg in ['wordpress', 'drupal', 'joomla', 'vbulletin']:
         cms = cmsg
     else:
         cms = find_cms(url)

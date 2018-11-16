@@ -1,0 +1,34 @@
+{% extends "_base.html" %}
+{% block title %}CMSScan - Results{% endblock %}
+{% block content %}
+ <style>
+ #dest {
+  text-shadow: none;
+  background: #fffff;
+  padding: 1em;
+}
+</style>
+<section class="mbr-section--bg-adapted" id="header23-21" style="background-color: rgb(3, 169, 244);">
+    <div class="intro intro1">
+        
+        <div class="container">
+            <div class="row center-content">
+                <div class="col-sm-12">
+                    <div class="intro-form" data-form-type="formoid">
+                        <h4>SCAN DETAILS</h4>
+                        <h5>
+                        <span class="badge badge-primary">Scan ID </span> {{ result.id }} </br>
+                        <span class="badge badge-primary">Scan URL </span> {{ result.url }} </br>
+                        <span class="badge badge-primary">CMS Type </span> {{ result.cms }} </br>
+                        <span class="badge badge-primary">Scan Completed </span> {{ result.tms | tmstring }}</br>
+                        <span class="badge badge-warning">Scan Results </span>
+                       </h5>            
+                      <div id="dest"> <pre>{{ result.res }} </pre></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

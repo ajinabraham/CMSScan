@@ -1,3 +1,6 @@
 [submodule "plugins/vbscan"]
 	path = plugins/vbscan
 	url = https://github.com/rezasp/vbscan.git
+[submodule "plugins/joomscan"]
+	path = plugins/joomscan
+	url = https://github.com/rezasp/joomscan.git
