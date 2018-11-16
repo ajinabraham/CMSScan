@@ -1,3 +1,4 @@
+#!/bin/sh
 gem install wpscan
 wpscan --update
 python3 -m pip install virtualenv
