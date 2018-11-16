@@ -1,0 +1,61 @@
+{% extends "_base.html" %}
+{% block title %}CMSScan - Results{% endblock %}
+{% block content %}
+<script src="/static/js/renderjson.js"></script>
+ <style>
+ #dest {
+  text-shadow: none;
+  background: #fffff;
+  padding: 1em;
+}
+
+      .renderjson a { text-decoration: none; }
+      .renderjson .disclosure { color: crimson;
+                                font-size: 150%; }
+      .renderjson .syntax { color: grey; }
+      .renderjson .string { color: darkred; }
+      .renderjson .number { color: darkcyan; }
+      .renderjson .boolean { color: blueviolet; }
+      .renderjson .key    { color: darkblue; }
+      .renderjson .keyword { color: blue; }
+      .renderjson .object.syntax { color: lightseagreen; }
+      .renderjson .array.syntax  { color: orange; }
+    </style>
+<section class="mbr-section--bg-adapted" id="header23-21" style="background-color: rgb(3, 169, 244);">
+    <div class="intro intro1">
+        
+        <div class="container">
+            <div class="row center-content">
+                <div class="col-sm-12">
+                    <div class="intro-form" data-form-type="formoid">
+                        <h4>SCAN DETAILS</h4>
+                        <h5>
+                        <span class="badge badge-primary">Scan ID </span> {{ result.id }} </br>
+                        <span class="badge badge-primary">Scan URL </span> {{ result.url }} </br>
+                        <span class="badge badge-primary">CMS Type </span> {{ result.cms }} </br>
+                        <span class="badge badge-primary">Scan Completed </span> {{ result.tms | tmstring }}</br>
+                        <span class="badge badge-warning">Scan Results </span>
+                       </h5>
+                       
+
+                      <div id="dest"></div>
+                          <script>
+                            document.getElementById("dest").appendChild(
+                              renderjson.set_show_by_default(true)
+                                        .set_show_to_level(4)
+                                        //.set_sort_objects(true)
+                                        //.set_icons('+', '-')
+                                          .set_max_string_length(100)
+                                ({{ result.res | safe }}));
+
+                          </script>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

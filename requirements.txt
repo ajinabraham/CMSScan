@@ -1,0 +1,5 @@
+Flask
+requests
+gunicorn
+fake_useragent
+droopescan

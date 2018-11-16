@@ -1,0 +1,31 @@
+{% extends "_base.html" %}
+{% block title %}CMSScan{% endblock %}
+{% block content %}
+<section class="mbr-section--bg-adapted" id="header2-2" style="background-image: url(static/img/bg.jpg);">
+    <div class="intro intro7">
+        <div class="mbr-overlay" style="opacity: 0.2; background-color: rgb(0, 0, 0);"></div>
+        <div class="container">
+            <div class="row center-content center-content-ipad">
+                <div class="col-sm-7 col-md-6">
+                    <div class="intro-form2-dark" data-form-type="formoid">
+                       <h4>On Demand CMS Scan</h4>
+                        <form id="scan_form" onsubmit="return init_scan()">
+                            <div class="form-group">
+                                    <input type="url" pattern="http.*" class="form-control" id="url" name="url" required="" placeholder="CMS URL" data-form-field="url">
+                            </div>
+                            <div><button class="btn btn-block btn-lg btn-primary">Start a Scan</button></div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 pl-4">
+                    <h2>CMSScan</h2>
+                    <h5 style="color: #ffff">Scan Wordpress and Drupal CMS for Security issues</h5>
+                    <div class="space30"></div>
+                    <div><a class="btn btn-lg btn-primary" href="/scans">RECENT SCANS</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

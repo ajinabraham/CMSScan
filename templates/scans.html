@@ -1,0 +1,47 @@
+{% extends "_base.html" %}
+{% block title %}CMSScan - All Scans{% endblock %}
+{% block content %}
+<section class="mbr-section--bg-adapted" id="header23-21" style="background-color: rgb(3, 169, 244);">
+    <div class="intro intro1">
+        
+        <div class="container">
+            <div class="row center-content">
+                <div class="col-sm-12">
+                    <div class="intro-form" data-form-type="formoid">
+                        <h4>RECENT SCANS</h4>
+                        <table class="table">
+                        <thead>
+                          <tr>
+                            <th>ID</th>
+                            <th>URL</th>
+                            <th>CMS</th>
+                            <th>SCAN TIME</th>
+                            <th>ACTION</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                           {% for scan in scans %}
+                            <tr>
+                              <td>{{scan.id}}</td>
+                              <td>{{scan.url}}</td>
+                              <td>{{scan.cms}}</td>
+                              <td>{{scan.tms | tmstring}}</td>
+                              <td>
+                                <a href="/result/{{scan.id}}"> <span class="badge badge-primary">View</span></a>
+                                <a href="javascript:delete_result({{scan.id}}, this)"> <span class="badge badge-danger">Delete</span></a>
+                              </td>
+                            </tr>
+                            
+                         {% endfor %}
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  <script src="/static/js/jquery-confirm.min.js" type="text/javascript"></script>
+{% endblock %}
