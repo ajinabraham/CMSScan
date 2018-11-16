@@ -15,6 +15,7 @@ RUN gem install wpscan && \
 
 COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
+RUN git submodule init
 RUN git submodule update --init --recursive
 WORKDIR /usr/src/app/plugin/vbscan
 RUN git pull origin master
