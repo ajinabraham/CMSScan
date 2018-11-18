@@ -22,13 +22,15 @@ def find_cms(url):
     return "unknown"
 
 
-def cmd_runner(cmd):
+def cmd_runner(cmd, jsono=True):
     try:
         result = check_output(cmd, stderr=STDOUT, universal_newlines=True)
         return result
     except CalledProcessError as exc:
         print("[ERROR]", exc.returncode, exc.output)
-        return json.dumps(json.loads(exc.output.strip()))
+        if jsono:
+            return json.dumps(json.loads(exc.output.strip()))
+        return exc.output.strip()
 
 
 def droopescan(url):
@@ -43,7 +45,7 @@ def droopescan(url):
 
 def update_wpscan():
     print("[INFO] Updating WPScan")
-    cmd_runner(['wpscan', '--update'])
+    cmd_runner(['wpscan', '--update'], False)
 
 
 def wpscan(url):
