@@ -67,4 +67,4 @@ docker run -it -p 7070:7070 opensecurity/cmsscan
 
 ![](https://user-images.githubusercontent.com/4301109/48620839-855c9100-e9c7-11e8-97c6-1e25252d2d01.png)
 ![](https://user-images.githubusercontent.com/4301109/48620970-03b93300-e9c8-11e8-9962-714e8fea2c6c.png)
-![](https://user-images.githubusercontent.com/4301109/48620969-03209c80-e9c8-11e8-9d88-1a12b216368e.png)
+![](https://user-images.githubusercontent.com/4301109/48670210-cf658400-eb39-11e8-8aad-fa2c2915c42a.png)
