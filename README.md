@@ -11,7 +11,7 @@ CMSScan provides a centralized Security Dashboard for CMS Security scans. It is 
 
 ## Install
 ```
-# Requires ruby, ruby-dev, gem, python3.6+ and git
+# Requires ruby, ruby-dev, gem, libwww-per, python3.6+ and git
 git clone https://github.com/ajinabraham/CMSScan.git
 cd CMSScan
 ./setup.sh
