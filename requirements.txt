@@ -1,4 +1,5 @@
 Flask
+Flask-BasicAuth
 requests
 gunicorn
 fake_useragent

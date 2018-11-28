@@ -2,6 +2,7 @@ from threading import Thread
 from datetime import datetime
 from flask import Flask, jsonify, g
 from flask import render_template, request
+from flask_basicauth import BasicAuth
 
 from plugins.scanners import (
     update_wpscan,
@@ -15,7 +16,12 @@ from db import (
 )
 
 app = Flask(__name__, static_folder="static")
+# Basic Auth Credentials
+app.config['BASIC_AUTH_USERNAME'] = 'admin'
+app.config['BASIC_AUTH_PASSWORD'] = 'password'
+app.config['BASIC_AUTH_FORCE'] = False
 
+basic_auth = BasicAuth(app)
 
 try:
     Thread(target=update_wpscan).start()

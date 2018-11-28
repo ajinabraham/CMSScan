@@ -11,7 +11,7 @@ CMSScan provides a centralized Security Dashboard for CMS Security scans. It is 
 
 ## Install
 ```
-# Requires ruby, ruby-dev, gem, libwww-per, python3.6+ and git
+# Requires ruby, ruby-dev, gem, libwww-perl, python3.6+ and git
 git clone https://github.com/ajinabraham/CMSScan.git
 cd CMSScan
 ./setup.sh
@@ -45,6 +45,16 @@ Add a cronjob
 ```
 crontab -e
 @weekly /usr/bin/python3 scheduler.py
+```
+
+## Basic Auth
+
+By default there is no authentication. To enable basic auth, configure the following in `app.py` 
+
+```
+app.config['BASIC_AUTH_USERNAME'] = 'admin'
+app.config['BASIC_AUTH_PASSWORD'] = 'password'
+app.config['BASIC_AUTH_FORCE'] = True
 ```
 
 ## Docker
