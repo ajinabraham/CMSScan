@@ -7,7 +7,8 @@ RUN \
   apt-get update && \
   apt-get install -y ruby \
   ruby-dev \
-  git
+  git \
+  libwww-perl
 
 RUN gem install wpscan && \
   wpscan --update
@@ -19,8 +20,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN git clone https://github.com/rezasp/vbscan.git
 RUN git clone https://github.com/rezasp/joomscan.git
 
-RUN mv vbscan /usr/src/app/plugins/vbscan
-RUN mv joomscan /usr/src/app/plugins/joomscan
+RUN mv vbscan /usr/src/app/plugins
+RUN mv joomscan /usr/src/app/plugins
 
 EXPOSE 7070
 CMD ["gunicorn", "--bind", "0.0.0.0:7070", "app:app", "--workers 3", "--timeout", "10000"]
