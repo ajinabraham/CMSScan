@@ -53,8 +53,8 @@ def wpscan(url):
     if not url.endswith("/"):
         url += "/"
     wp_scan = ['wpscan', '--url', url, '--no-banner', '-f', 'json',
-               '--force', '--wp-content-dir', url + 'wp-content/',
-               '-e', 'vp,vt', '--plugins-detection', 'mixed', '--rua']
+               '--force', '-e', 'vp,vt', '--plugins-detection',
+               'mixed', '--rua']
     return cmd_runner(wp_scan)
 
 
