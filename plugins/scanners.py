@@ -15,7 +15,7 @@ def find_cms(url):
         return "wordpress"
     elif "Drupal.settings" in res.text:
         return "drupal"
-    elif "window.vBulletin" in res.text:
+    elif "window.vBulletin" in res.text or "vBulletin_" in res.text:
         return "vbulletin"
     elif "Joomla!" in res.text or "joomla-script-" in res.text:
         return "joomla"
