@@ -11,7 +11,7 @@ def find_cms(url):
         res = requests.get(url, headers=headers)
     except:
         return "unknown"
-    if "wp-content/themes/" in res.text:
+    if "wp-content/themes/" in res.text or "wordpress" in res.text:
         return "wordpress"
     elif "Drupal.settings" in res.text:
         return "drupal"
